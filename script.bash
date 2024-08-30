@@ -1,5 +1,13 @@
 #!/bin/bash
 
+# Define the PS1 configuration
+PS1_CONFIG="PS1='\\[\\033[1;36m\\]\\u\\[\\033[1;31m\\]@\\[\\033[1;32m\\]\\h:\\[\\033[1;35m\\]\\w\\[\\033[1;31m\\]\\$\\[\\033[0m\\] '"
+
+# Create a new script in /etc/profile.d/ to set the PS1 for all users
+echo "Adding PS1 configuration to /etc/profile.d/custom_prompt.sh"
+echo "$PS1_CONFIG" | sudo tee /etc/profile.d/custom_prompt.sh > /dev/null
+sudo chmod +x /etc/profile.d/custom_prompt.sh
+
 # Determine the Apache configuration file path depending on the distribution
 if command -v apache2 &> /dev/null; then
     APACHE_CONF="/etc/apache2/apache2.conf"
